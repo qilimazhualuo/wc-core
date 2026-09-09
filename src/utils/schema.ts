@@ -164,7 +164,10 @@ export const resolveTableFields = (options: {
     if (options.schema?.fields?.length) {
         return schemaToTableFields(normalizeSchemaFields(options.schema.fields))
     }
-    return (options.fields || []).filter((fieldItem) => fieldItem.tableParams)
+    if (options.fields?.length) {
+        return schemaToTableFields(normalizeSchemaFields(options.fields))
+    }
+    return []
 }
 
 export const resolveSearchFields = (options: {
